@@ -5,11 +5,13 @@
  */
 package Util;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
+
 
 /**
  *
@@ -17,57 +19,57 @@ import java.util.Vector;
  */
 public class Setup
 {
-    private int status=0;
     private final String mainFolder="C://TemplateTemple";
-    private final String formsFolder=mainFolder+"/Forms";
-    private final String LoginFolder=mainFolder+"/Logins";
-    private Vector<String> subFolders=new Vector();
+    private final String templateFolder=mainFolder+"/Templates";
+    private String defaultFolders[]=new String[4];
+    private Vector<String> userFolders=new Vector();
+
+    public Setup()
+    {
+        setDefaultFolder();
+    }
     
+    public void setUserFolders(String name) 
+    {
+        this.userFolders.add(name);
+    }
+    
+    public void setDefaultFolder()
+    {
+        defaultFolders[0]="Forms";
+        defaultFolders[1]="Login";
+        defaultFolders[2]="Registration";
+        defaultFolders[3]="Comments";
+    }
+         
     public int mkdir()
     {  
-        File dir=new File(mainFolder);    
+        File dir=new File(mainFolder);
+        int status=0;
         if(!dir.exists())
         {
+            status=1;
             new File(mainFolder).mkdirs();
-            new File(formsFolder).mkdirs();
-        File al= new File(mainFolder+"/access_list.txt");
-        try
-        {
-         al.createNewFile();
-         BufferedWriter writer=new BufferedWriter(new FileWriter(al));
-         writer.write("admin");
-         writer.newLine();
-         writer.write("password");
-         writer.close();
-         status=1;
-
-        }
-        catch(IOException ex)
-        {
-            System.out.println(ex.getClass());
-        }
-       
+            new File(templateFolder).mkdirs();
+            
+            for(String f:defaultFolders)
+            {
+               new File(templateFolder+"/"+f).mkdir();
+            }
         }
         return status;
     };
     
-    public int mkSub(String[] folders)
+    public int mkSub(String name)
     { 
-        for(String fol: folders)
-        {
-            status=1;
-        File f=new File(formsFolder);
-        File[] paths=f.listFiles();
-        new File(formsFolder+"/"+fol).mkdirs();
+        int status=0;
+       File f=new File(templateFolder);
+       File[] flist=f.listFiles();
+       List<File> folderList=new ArrayList<>(Arrays.asList(flist));
+       
+       return status;
+       
+       
         
-        File file=new File(formsFolder+"/"+fol);
-        if(!(file.exists()))
-        {
-            status=0;
-        }
-      
-        }
-        
-          return status;
     }
 }
