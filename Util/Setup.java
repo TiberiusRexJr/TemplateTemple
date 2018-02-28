@@ -22,6 +22,7 @@ public class Setup
     private final String formsFolder=mainFolder+"/Forms";
     private final String LoginFolder=mainFolder+"/Logins";
     private Vector<String> subFolders=new Vector();
+    
     public int mkdir()
     {  
         File dir=new File(mainFolder);    
@@ -50,19 +51,23 @@ public class Setup
         return status;
     };
     
-    public int mkSub(String name)
+    public int mkSub(String[] folders)
     { 
-        int status=1;
+        for(String fol: folders)
+        {
+            status=1;
         File f=new File(formsFolder);
         File[] paths=f.listFiles();
+        new File(formsFolder+"/"+fol).mkdirs();
         
-        new File(formsFolder+"/"+name).mkdirs();
-        
-        File file=new File(formsFolder+"/"+name);
+        File file=new File(formsFolder+"/"+fol);
         if(!(file.exists()))
         {
             status=0;
         }
-        return status;
+      
+        }
+        
+          return status;
     }
 }

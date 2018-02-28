@@ -4,6 +4,8 @@ package GUI;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import Util.IO;
+
+
 public class Controls extends GridPane 
 {
     
@@ -26,4 +28,5 @@ public class Controls extends GridPane
         this.add(add,0,0);
     }
     
+
 }
