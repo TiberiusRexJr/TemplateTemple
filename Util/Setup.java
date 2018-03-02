@@ -68,8 +68,20 @@ public class Setup
        List<File> folderList=new ArrayList<>(Arrays.asList(flist));
        
        return status;
-       
-       
-        
+    
     }
+    
+    public ArrayList<String> folderScanner()
+    {
+      File f=new File(templateFolder);
+      File[] folderList=f.listFiles();
+      ArrayList<String> folderNames=new ArrayList();
+      
+      for(File fi:folderList)
+      {
+        folderNames.add(fi.getName());
+      }
+      
+      return folderNames;
+    };
 }

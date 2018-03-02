@@ -23,7 +23,7 @@ public class Controls extends GridPane
         add.setOnAction((event)->
         {
             IO io=new IO();
-            io.addFile();
+            io.selectFile();
         });
         this.add(add,0,0);
     }
