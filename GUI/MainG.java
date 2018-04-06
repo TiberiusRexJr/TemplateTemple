@@ -15,10 +15,11 @@ import javafx.scene.layout.BorderPane;
 public class MainG extends BorderPane
 {
     Controls con=new Controls();
-
+    MainPanel main=new MainPanel();
     public  MainG()
     {
         this.setLeft(con);
+        this.setCenter(main);
        
     }
 
